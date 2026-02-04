@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export API_MODEL=yourmodelhere
+export API_BASE_URL=https://yourbaseopenaiurlhere/v1
+export API_KEY="your api key here"
+
+export YOLO_MODE=1
+export MAX_RETRIES=99999
+
+export TOOLS_ALLOW="read_file,write_file,list_directory"
+export PLUGINS_ALLOW="skills,empty_retry"
+
+export CONTEXT_SIZE=200000
+
+user_prompt="read the file '$1' and do whatever is asked in the AITODO sections... make sure to do all you can to comply to whatever is asked... don't leave AITODO lines unless you could not do what was asked"
+
+# aicoder available in https://github.com/elblah/v3
+# should also work with any other aicoder
+echo "$user_prompt" | timeout -k 5s 3m aicoder-start
